@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HBV inflammation research calculator. For accompanying-paper demonstration only; not for clinical use.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; worker-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'">
+  <title>HBV Inflammation · Research Calculator</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css?v=15c940c6ccabdb12">
+  <script src="./app.js?v=b302f7c1670bef57" type="module"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="#"><span>HBV Inflammation<span class="brand-sub">RESEARCH CALCULATOR</span></span></a></header>
+  <main>
+    <section class="warning" role="note" aria-label="Research-only warning"><div><strong>For accompanying-paper demonstration only. Not for clinical use.</strong><p>This website has not been deployed for clinical practice. Its outputs must not be used to make diagnosis or treatment decisions, replace clinical judgement, or substitute for professional medical assessment.</p></div></section>
+    <div class="workspace">
+      <section class="input-panel" aria-labelledby="input-heading">
+        <div class="panel-head"><h2 id="input-heading">Predictor values</h2><div class="actions"><button type="button" id="example" disabled>Load example</button><button type="button" id="clear" disabled>Clear</button></div></div>
+        <p class="input-note">Blank fields use frozen development-cohort values. The example is synthetic.</p>
+        <form id="predict-form">
+          <div id="fields"><p>Loading…</p></div>
+          <p id="error" role="alert" hidden></p>
+          <div class="submit-row"><span id="completion">0 / 26 values entered</span><button type="submit" id="submit" class="primary" disabled>Calculate</button></div>
+        </form>
+      </section>
+      <aside class="result-panel" aria-labelledby="result-heading">
+        <div class="panel-head"><h2 id="result-heading">Predictions</h2><span id="status" class="status" role="status">Loading</span></div>
+        <div id="results" aria-live="polite"><p>Loading…</p></div>
+        <p id="imputation" class="imputation" hidden></p>
+        <div class="result-note"><strong>Reading the output</strong><p>Positive means the predicted probability ≥ the selected threshold; Negative means it is below that threshold. The development-derived Youden threshold is the default. This is a statistical classification, not a clinical action recommendation.</p><p>The three outcomes were modelled independently. Their probabilities need not be ordered and do not form a four-class probability distribution.</p><p>Target sensitivity and specificity use saved development-stage predictions. The displayed rates are operating-point references, not independent validation estimates or guarantees for new patients. Changing the threshold changes classification, not probability.</p></div>
+      </aside>
+    </div>
+  </main>
+  <footer><p class="local-note">All prediction calculations run in your browser. Predictor values are not uploaded, stored or sent to an analytics service. The static website host serves the page and model files.</p></footer>
+  <noscript><p class="warning">JavaScript is required to calculate predictions in your browser.</p></noscript>
+</body>
+</html>
